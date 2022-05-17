@@ -77,3 +77,41 @@ const llynn: GamePlayer<null> = {
     name:"lynn",
     extraInfo:null
 }
+
+function combine<Type>(arr1: Type[], arr2:Type[] ){
+    return arr1.concat(arr2);
+}
+
+
+const arr = combine<string|number>([1,2,3],["hello"]);
+
+// interface Example{
+    // diff(one: string): number;
+//     diff(one: string, two: string): number;
+//     diff(one: string, two: string, three: boolean): number;
+// }
+
+interface Example {
+    diff(one:string, two?: string, three?: boolean): number;
+}
+
+function fn(x: (a: string, b: number, c: number) => number) {
+    let result: number = x("1",2,3);
+    console.log(result);
+}
+let x: Example = {
+    diff(one:string,two?:string,three?:boolean):number{
+        if(three){
+            console.log(three);
+            console.log(typeof three);
+            return 3;
+        }else if(two){
+            console.log(two);
+            return 2;
+        }else{
+            console.log(one);
+            return 1;
+        }
+    }
+}
+fn(x.diff);
